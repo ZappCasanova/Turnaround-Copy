@@ -1,1 +1,12 @@
-
+services:
+  - type: web
+    name: turnaround-api
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      playwright install
+      playwright install-deps
+    startCommand: gunicorn main:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
